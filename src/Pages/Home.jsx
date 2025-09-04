@@ -7,12 +7,13 @@ import { FaGripLinesVertical } from "react-icons/fa";
 import { FaBowlingBall } from "react-icons/fa6";
 import TrueFocus from "../components/TrueFocus";
 import Card from "../components/Card";
+import Items from "../components/Items";
 
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center my-40">
+      <div className="flex justify-center items-center mt-40">
         <div>
           <div className="text-white flex justify-center items-center text-xl my-8">
             <TrueFocus
@@ -72,7 +73,7 @@ const Home = () => {
           </ElectricBorder>
         </div>
       </div>
-      <div className="text-white"><Card/></div>
+      <Items/>
     </div>
   );
 };

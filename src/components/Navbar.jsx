@@ -16,19 +16,19 @@ const Navbar = () => {
         initial={{ x: -20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 2 }}
-        className="flex justify-start items-center mx-10 w-[20%] md:mx-20"
+        className="flex justify-start items-center mx-8 w-[20%] md:mx-12"
       >
         <img
           src={FoodShip_logo}
           alt="FoodShip Logo"
-          className="size-4 mx-2 rounded-lg md:size-6 lg:size-8"
+          className="size-4 mx-2 rounded-lg md:size-8 lg:size-8"
         />
 
         <div className="font-extrabold text-lg bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
           FoodShip
         </div>
       </motion.div>
-      <div className="p-1 border rounded-2xl text-[40%] flex flex-wrap justify-center items-center tracking-wider px-2 bg-gradient-to-r from-yellow-600 via-green-500 to-red-500 bg-clip-text text-transparent md:text-[50%] md:w-[40%] lg:text-[60%] lg:px-6 lg:w-[30%]">
+      <div className="p-1 border rounded-2xl text-[40%] flex flex-wrap justify-center items-center tracking-wider px-2 bg-gradient-to-r from-yellow-600 via-green-500 to-red-500 bg-clip-text text-transparent md:text-[50%] md:w-[40%] lg:text-[60%] lg:px-4 lg:w-[30%]">
         Hungry🍴? FoodShip makes it simple. Order, relax, and enjoy fresh food
         with FoodShip in minutes. 🚀
       </div>
