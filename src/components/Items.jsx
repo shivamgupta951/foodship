@@ -11,6 +11,9 @@ import image1 from "../assets/image1.avif";
 import dec1 from "../assets/dec1.png";
 import { SiFoodpanda } from "react-icons/si";
 import FoodShip_logo from "../assets/FoodShip.png";
+import { food_items } from "../lib/food";
+import { LuLeafyGreen } from "react-icons/lu";
+import { GiChickenOven } from "react-icons/gi";
 
 const Items = () => {
   return (
@@ -32,7 +35,7 @@ const Items = () => {
               animate={{ rotate: [0, 6, -6, 0] }}
               transition={{
                 repeat: Infinity,
-                duration: 6,
+                duration: 15,
                 ease: "easeInOut",
               }}
               className="hidden lg:flex"
@@ -46,7 +49,7 @@ const Items = () => {
             <div className="border p-2 lg:pb-10 lg:px-6 rounded-2xl bg-black">
               <div className="flex justify-center items-center my-4 font-extrabold text-sm md:text-lg bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent relative">
                 Select your items{" "}
-                <SiFoodpanda className="text-violet-400 mx-2 " />
+                <SiFoodpanda className="hidden md:inline md:text-violet-400 md:mx-2 " />
                 <div className="md:text-white absolute right-0">
                   <motion.div
                     initial={{ x: 20, opacity: 0 }}
@@ -73,29 +76,44 @@ const Items = () => {
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 1.8 }}
-                  className="cursor-pointer grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 p-5 bg-gradient-to-r from-gray-900 to-black w-full"
+                  className="cursor-grabbing grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-5 bg-gradient-to-r from-gray-900 to-black w-full"
                 >
-                  {testing.map((items, index) => {
+                  {food_items.map((item, index) => {
+                    const { food_image, food_name, price, food_type } = item;
+
                     return (
                       <div
                         key={index}
-                        className="cursor-pointer border p-2 px-4 bg-gray-500 rounded-md transition-all transform shadow-lg duration-500 ease-in-out hover:scale-105 hover:ring-2 hover:ring-red-500 hover:bg-gray-600 md:px-2"
+                        className="border p-2 px-4 bg-gray-500 rounded-md transition-all transform shadow-lg duration-500 ease-in-out hover:scale-105 hover:ring-2 hover:ring-red-500 hover:bg-gray-600 md:px-2"
                       >
                         <div className="flex justify-center items-center">
                           <img
-                            src={image1}
-                            alt="image"
-                            className="size-15 mx-2 rounded-lg md:size-16 lg:size-32"
+                            src={food_image}
+                            alt={food_name}
+                            className="size-16 mx-2 rounded-lg md:size-16 lg:size-32"
                           />
                         </div>
-                        <div className="flex mx-4 text-lg font-extrabold justify-start items-center text-black">
-                          {items.name}
+                        <div className="text-[40%] flex justify-center mx-4 my-1 md:text-[70%] font-extrabold items-center text-black">
+                          {food_name}
                         </div>
-                        <div className="px-2 py-1 flex justify-between bg-green-950 items-center">
-                          <div className="text-sm text-blue-200">Rs 399/-</div>
-                          <div className="text-sm text-orange-600">i Veg</div>
+                        <div
+                          className={`text-[60%] md:text-sm px-2 py-1 flex justify-between ${
+                            food_type === "veg" ? "bg-green-950" : "bg-red-950"
+                          } items-center`}
+                        >
+                          <div className="text-blue-200">Rs {price}/-</div>
+                          <div className="text-orange-600 text-[80%] flex justify-center items-center">
+                            {food_type === "veg" ? (
+                              <LuLeafyGreen className="mx-1" />
+                            ) : (
+                              <GiChickenOven className="mx-1" />
+                            )}
+                            {food_type}
+                          </div>
                         </div>
-                        <div className="flex justify-center items-center p-1 mt-2 bg-gradient-to-bl from-yellow-900 via-orange-900 to-blue-900 text-md border rounded-lg">Add to cart</div>
+                        <div className="text-[70%] transition-all transform duration-500 ease-in-out text-white flex justify-center items-center p-1 mt-2 bg-gradient-to-bl from-yellow-900 via-orange-900 to-blue-900 md:text-md border rounded-lg hover:from-yellow-600 hover:via-orange-500 hover:to-blue-700 cursor-pointer hover:scale-105">
+                          Add to cart
+                        </div>
                       </div>
                     );
                   })}
