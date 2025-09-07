@@ -1,7 +1,9 @@
 import { BiDrink, BiFoodMenu } from "react-icons/bi";
+import { CiBurger } from "react-icons/ci";
 import { IoFastFood } from "react-icons/io5";
+import { LuSoup } from "react-icons/lu";
 import { MdFoodBank, MdOutlineEmojiFoodBeverage } from "react-icons/md";
-import { PiBowlFoodBold } from "react-icons/pi";
+import { PiBowlFoodBold, PiPizza } from "react-icons/pi";
 
 export const categories = [
     {
@@ -16,23 +18,28 @@ export const categories = [
     },
     {
         id:3,
-        name:"Lunch",
-        icon:<PiBowlFoodBold  className="size-[100%] text-green-600"/>
+        name:"Burger",
+        icon:<CiBurger  className="size-[100%] text-green-600"/>
     },
     {
         id:4,
-        name:"Snacks",
+        name:"Pasta",
         icon:<IoFastFood  className="size-[100%] text-green-600"/>
     },
     {
         id:5,
-        name:"Dinner",
+        name:"Main_course",
         icon:<MdFoodBank  className="size-[100%] text-green-600"/>
     },
     {
         id:5,
-        name:"SoftDrinks",
-        icon:<BiDrink  className="size-[100%] text-green-600"/>
+        name:"Soups",
+        icon:<LuSoup  className="size-[100%] text-green-600"/>
+    },
+    {
+        id:6,
+        name:"Pizza",
+        icon:<PiPizza  className="size-[100%] text-green-600"/>
     },
 ]
 
