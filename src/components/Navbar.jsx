@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import FoodShip_logo from "../assets/FoodShip.png";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
@@ -6,10 +6,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import { Button } from "./moving-border";
 import { motion } from "motion/react";
+import toast from "react-hot-toast";
+import { BioContext } from "../ContextApi/text";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { menustatus } = useContext(BioContext);
   return (
     <div className="w-full bg-slate-800 h-16 flex justify-between items-center relative">
       <motion.div
@@ -34,19 +36,27 @@ const Navbar = () => {
       </div>
       <div className="hidden md:flex justify-end items-center w-[50%] lg:w-[30%] space-x-2 pr-4">
         <form
-          action=""
+          onClick={(e) => {
+            if (!menustatus) {
+              e.preventDefault();
+              toast.success("Select a category to use the search bar!");
+            }
+          }}
           className="flex items-center justify-center bg-white p-1 rounded-lg w-[50%] shadow-md lg:w-[65%]"
         >
           <IoSearch className="mx-2 size-4 text-green-400" />
           <input
             type="text"
             placeholder="Search Items"
-            className="p-1 w-[80%] text-[12px] lg:w-[60%] lg:text-[15px]"
+            className={`p-1 w-[80%] text-[12px] lg:w-[60%] lg:text-[15px] bg-white ${
+              !menustatus ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={!menustatus} // still keep disabled for actual typing
           />
         </form>
         <Button
           borderRadius={12}
-          className="bg-yellow-200 text-black dark:border-slate-900 border-2 relative"
+          className="bg-yellow-500 text-black dark:border-slate-900 border-2 relative"
         >
           Cart <FaCartArrowDown className="mx-1" size={22} />
           <span className="absolute top-0 right-1">0</span>{" "}
@@ -61,21 +71,32 @@ const Navbar = () => {
         <div className="absolute top-16 w-full bg-slate-900 p-5 flex flex-col space-y-4 md:hidden">
           <div className="flex justify-around items-center">
             <form
-              action=""
+              onClick={(e) => {
+                if (!menustatus) {
+                  e.preventDefault();
+                  toast.success("Select a category to use the search bar!");
+                }
+              }}
               className="flex items-center justify-center bg-white p-1 rounded-lg w-[70%] shadow-md"
             >
               <IoSearch className="mx-2 size-6 text-green-400" />
               <input
                 type="text"
                 placeholder="Search Items"
-                className="p-1 w-[100%]"
+                className={`p-1 w-[100%] bg-white ${
+                  !menustatus ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={!menustatus}
               />
             </form>
-            <button className="btn btn-sm shadow-md border-2 border-black bg-yellow-200 p-2 rounded-md px-3 mx-5 flex justify-center items-center relative">
+            <Button
+              borderRadius={12}
+              className="bg-yellow-500 text-black dark:border-slate-900 border-2 relative"
+            >
               Cart
               <FaCartArrowDown className="mx-1" size={22} />
               <span className="absolute top-0 right-1">0</span>
-            </button>
+            </Button>
           </div>
         </div>
       )}

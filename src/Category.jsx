@@ -32,12 +32,12 @@ export const categories = [
         icon:<MdFoodBank  className="size-[100%] text-green-600"/>
     },
     {
-        id:5,
+        id:6,
         name:"Soups",
         icon:<LuSoup  className="size-[100%] text-green-600"/>
     },
     {
-        id:6,
+        id:7,
         name:"Pizza",
         icon:<PiPizza  className="size-[100%] text-green-600"/>
     },

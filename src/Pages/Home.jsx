@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import categories from "../Category";
 import ElectricBorder from "../components/ElectricBorder";
@@ -7,16 +7,17 @@ import { FaBowlingBall } from "react-icons/fa6";
 import TrueFocus from "../components/TrueFocus";
 import Items from "../components/Items";
 import { useState } from "react";
+import { BioContext } from "../ContextApi/text";
 
 const Home = () => {
   const [cards, setCards] = useState("");
-  const [menustatus, setMenuStatus] = useState(false);
+  const {menustatus , setMenuStatus} = useContext(BioContext)
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center items-center mt-10">
+      <div className="flex justify-center items-center mt-20">
         {menustatus ? (
-          <Items cate={cards} menustatusset={setMenuStatus} cardset={setCards}/>
+          <Items cate={cards} cardset={setCards}/>
         ) : (
           <div>
             <div className="text-white flex justify-center items-center text-xl my-8">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import ElectricBorder from "../components/ElectricBorder";
 import { motion } from "motion/react";
@@ -15,8 +15,10 @@ import { food_items } from "../lib/food";
 import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
 import { BiLeftArrow, BiLeftArrowAlt } from "react-icons/bi";
+import { BioContext } from "../ContextApi/text";
 
-const Items = ({ cate, cardset, menustatusset }) => {
+const Items = ({ cate, cardset }) => {
+  const { setMenuStatus } = useContext(BioContext);
   const filteredItems =
     cate === "all"
       ? food_items
@@ -25,7 +27,7 @@ const Items = ({ cate, cardset, menustatusset }) => {
     <div className="bg-black ">
       <div className="flex justify-center items-center">
         <div>
-          <div className="text-green-700 flex justify-center items-center text-xl my-4 mb-6 space-x-8">
+          <div className="text-green-700 flex justify-center items-center text-xl my-4 mb-2 space-x-8">
             <TrueFocus
               sentence="Food-Menu"
               manualMode={false}
@@ -40,7 +42,7 @@ const Items = ({ cate, cardset, menustatusset }) => {
             <button
               className="btn flex justify-center items-center gap-2 btn-sm text-green-400 border-2 border-orange-500 rounded-lg px-4 animate-bounce"
               onClick={() => {
-                menustatusset(false);
+                setMenuStatus(false);
               }}
             >
               <BiLeftArrowAlt />
