@@ -8,10 +8,15 @@ import { Button } from "./moving-border";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
 import { BioContext } from "../ContextApi/text";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { menustatus } = useContext(BioContext);
+  const { input, setInput } = useContext(BioContext);
+  useEffect(() => {
+    menustatus ? "" : setInput("");
+  }, [menustatus]);
   return (
     <div className="w-full bg-slate-800 h-16 flex justify-between items-center relative">
       <motion.div
@@ -36,6 +41,7 @@ const Navbar = () => {
       </div>
       <div className="hidden md:flex justify-end items-center w-[50%] lg:w-[30%] space-x-2 pr-4">
         <form
+          onSubmit={(e) => e.preventDefault()}
           onClick={(e) => {
             if (!menustatus) {
               e.preventDefault();
@@ -48,10 +54,14 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search Items"
-            className={`p-1 w-[80%] text-[12px] lg:w-[60%] lg:text-[15px] bg-white ${
+            className={`text-black p-1 w-[80%] text-[12px] lg:w-[60%] lg:text-[15px] bg-white ${
               !menustatus ? "opacity-50 cursor-not-allowed" : ""
             }`}
-            disabled={!menustatus} // still keep disabled for actual typing
+            disabled={!menustatus}
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+            value={input}
           />
         </form>
         <Button
@@ -71,6 +81,7 @@ const Navbar = () => {
         <div className="absolute top-16 w-full bg-slate-900 p-5 flex flex-col space-y-4 md:hidden">
           <div className="flex justify-around items-center">
             <form
+              onSubmit={(e) => e.preventDefault()}
               onClick={(e) => {
                 if (!menustatus) {
                   e.preventDefault();
@@ -83,10 +94,14 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search Items"
-                className={`p-1 w-[100%] bg-white ${
+                className={`text-black p-1 w-[100%] bg-white ${
                   !menustatus ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 disabled={!menustatus}
+                onChange={(e) => {
+                  setInput(e.target.value);
+                }}
+                value={input}
               />
             </form>
             <Button

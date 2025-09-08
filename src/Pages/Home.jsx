@@ -10,14 +10,14 @@ import { useState } from "react";
 import { BioContext } from "../ContextApi/text";
 
 const Home = () => {
-  const [cards, setCards] = useState("");
+  const {cards , setCards} = useContext(BioContext);  
   const {menustatus , setMenuStatus} = useContext(BioContext)
   return (
     <div>
       <Navbar />
       <div className="flex justify-center items-center mt-20">
         {menustatus ? (
-          <Items cate={cards} cardset={setCards}/>
+          <Items />
         ) : (
           <div>
             <div className="text-white flex justify-center items-center text-xl my-8">

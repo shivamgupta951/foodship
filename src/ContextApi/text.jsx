@@ -10,6 +10,8 @@ export function BioProvider({ children }) {
   const mySurname = "Gupta";
   const [menustatus, setMenuStatus] = useState(false);
   const [value, setValue] = useState(1);
+  const [cards, setCards] = useState("");
+  const [input, setInput] = useState("");
 
   return (
     <BioContext.Provider
@@ -20,6 +22,10 @@ export function BioProvider({ children }) {
         setValue,
         menustatus,
         setMenuStatus,
+        cards,
+        setCards,
+        input,
+        setInput
       }}
     >
       {children}

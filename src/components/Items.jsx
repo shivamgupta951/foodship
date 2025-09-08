@@ -17,10 +17,19 @@ import { GiChickenOven } from "react-icons/gi";
 import { BiLeftArrow, BiLeftArrowAlt } from "react-icons/bi";
 import { BioContext } from "../ContextApi/text";
 
-const Items = ({ cate, cardset }) => {
+const Items = () => {
+  const { cards } = useContext(BioContext);
+  const { input } = useContext(BioContext);
+  const cate = cards;
   const { setMenuStatus } = useContext(BioContext);
   const filteredItems =
-    cate === "all"
+    input.length !== 0
+      ? food_items.filter(
+          (item) =>
+            item.food_name.includes(input) ||
+            item.food_name.toLowerCase().includes(input)
+        )
+      : cate === "all"
       ? food_items
       : food_items.filter((item) => item.food_category.toLowerCase() === cate);
   return (
