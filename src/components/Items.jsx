@@ -117,18 +117,18 @@ const Items = () => {
               <div className="max-h-[350px] overflow-y-auto outline outline-4 outline-violet-700 p-5 ">
                 {" "}
                 {/* 👈 scroll wrapper */}
-                <motion.div
+                <motion.div 
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 1.8 }}
                   className={`${
                     filteredItems.length === 0
                       ? "flex justify-center items-center"
-                      : "cursor-grabbing grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-5 bg-gradient-to-r from-gray-900 to-black w-full"
+                      : "cursor-grabbing grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 p-5 bg-gradient-to-r from-gray-900 to-black w-full"
                   }`}
                 >
                   {filteredItems.length === 0 ? (
-                    <div className="text-white flex justify-center items-center size-60 w-72 md:size-96 md:w-[500px]">
+                    <div className="text-white flex justify-center items-center size-60 w-72 md:size-96 md:w-[550px]">
                       No items found
                     </div>
                   ) : (
@@ -140,11 +140,11 @@ const Items = () => {
                           key={index}
                           className="border p-2 px-4 bg-gray-500 rounded-md transition-all transform shadow-lg duration-500 ease-in-out hover:scale-105 hover:ring-2 hover:ring-red-500 hover:bg-gray-600 md:px-2"
                         >
-                          <div className="flex justify-center items-center">
+                          <div className="flex justify-center items-center"> 
                             <img
                               src={food_image}
                               alt={food_name}
-                              className="size-16 mx-2 rounded-lg md:size-16 lg:size-32"
+                              className="size-20 w-32 mx-2 rounded-lg md:size-16 lg:size-32"
                             />
                           </div>
                           <div className="text-[40%] flex justify-center mx-4 my-1 md:text-[70%] font-extrabold items-center text-black">

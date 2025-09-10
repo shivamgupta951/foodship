@@ -12,6 +12,7 @@ export function BioProvider({ children }) {
   const [value, setValue] = useState(1);
   const [cards, setCards] = useState("");
   const [input, setInput] = useState("");
+  const [cartstatus, setCartstatus] = useState(false);
 
   return (
     <BioContext.Provider
@@ -25,7 +26,9 @@ export function BioProvider({ children }) {
         cards,
         setCards,
         input,
-        setInput
+        setInput,
+        cartstatus,
+        setCartstatus
       }}
     >
       {children}

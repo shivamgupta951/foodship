@@ -8,14 +8,17 @@ import TrueFocus from "../components/TrueFocus";
 import Items from "../components/Items";
 import { useState } from "react";
 import { BioContext } from "../ContextApi/text";
+import { div } from "motion/react-client";
+import FoodShip_logo from "../assets/FoodShip.png";
 
 const Home = () => {
-  const {cards , setCards} = useContext(BioContext);  
-  const {menustatus , setMenuStatus} = useContext(BioContext)
+  const { cards, setCards } = useContext(BioContext);
+  const { menustatus, setMenuStatus, cartstatus, setCartstatus } =
+    useContext(BioContext);
   return (
-    <div>
+    <div className="relative">
       <Navbar />
-      <div className="flex justify-center items-center mt-20">
+      <div className="flex justify-center items-center mt-40 lg:mt-10 relative">
         {menustatus ? (
           <Items />
         ) : (
@@ -69,10 +72,15 @@ const Home = () => {
                       }}
                       className={`${
                         items.name.toLowerCase() === cards
-                          ? "transition-transform transform duration-300 ease-in-out ring-4 ring-green-500 scale-105"
+                          ? "transition-transform transform duration-300 ease-in-out ring-4 ring-red-500 scale-105"
                           : ""
-                      } cursor-grabbing border p-2 px-4 bg-gray-500 rounded-md transition-all transform shadow-lg duration-500 ease-in-out hover:scale-105 hover:ring-2 hover:ring-red-500 hover:bg-gray-600`}
+                      } cursor-grabbing border p-2 px-4 bg-gray-500 rounded-md transition-all transform shadow-lg duration-500 ease-in-out hover:scale-105 hover:ring-2 hover:ring-green-500 hover:bg-gray-600 relative`}
                     >
+                      {items.name.toLowerCase() === cards && (
+                        <div className="absolute text-[50%] bottom-36 p-1 border-2 border-black gap-2 rounded-2xl right-0 bg-red-800 text-white">
+                          Recently Viewed
+                        </div>
+                      )}
                       <div className="flex justify-center items-center text-white bg-white p-2 rounded-lg outline outline-2 outline-blue-700 my-2">
                         {items.icon}
                       </div>
@@ -87,6 +95,46 @@ const Home = () => {
           </div>
         )}
       </div>
+      {cartstatus && (
+        <div className="absolute text-white top-0 rounded-l-2xl border-black flex justify-center right-0 bg-gradient-to-br from-violet-900 border-4 via-slate-800 to-secondary min-h-screen w-[25%] py-2">
+          <div className="w-full">
+            <div className="flex justify-between items-center my-2 mx-4">
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2 }}
+                className="flex justify-start items-center w-[40%] mx-0"
+              >
+                <img
+                  src={FoodShip_logo}
+                  alt="FoodShip Logo"
+                  className="mr-1 rounded-lg size-6"
+                />
+
+                <div className="font-extrabold text-md bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                  FoodShip
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 0.6 }}
+                transition={{ duration: 2 }}
+                className="btn btn-sm btn-secondary opacity-70"
+                onClick={() => {
+                  setCartstatus(false);
+                }}
+              >
+                X
+              </motion.div>
+            </div>
+            <div className="text-2xl flex justify-center items-center tracking-widest m-4 bg-yellow-500 p-2 rounded-2xl outline-lime-500 outline">
+              <div className="text-green-900 p-1 border-red-900 border-b-2 font-extrabold">
+                Cart Section
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
