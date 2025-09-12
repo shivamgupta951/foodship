@@ -8,6 +8,7 @@ import TrueFocus from "../components/TrueFocus";
 import Items from "../components/Items";
 import { BioContext } from "../ContextApi/text";
 import FoodShip_logo from "../assets/FoodShip.png";
+import Card from "../components/Card";
 
 const Home = () => {
   const { cards, setCards } = useContext(BioContext);
@@ -108,17 +109,17 @@ const Home = () => {
 
       {/* 🛒 Cart Modal */}
       {cartstatus && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black/60 z-50 opacity-80">
+        <div className="fixed inset-0 flex justify-center items-center bg-black/60 z-50 opacity-90 md:opacity-80">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="w-[80%] text-white rounded-2xl border-black bg-gradient-to-br from-violet-900 border-4 via-slate-800 to-secondary min-h-[80%] md:w-[60%] py-2"
+            className="w-[100%] text-white rounded-2xl shadow-md shadow-fuchsia-900 border-black bg-gradient-to-br from-violet-900 border-4 via-slate-800 to-secondary min-h-[80%] md:w-[80%] lg:w-[60%] py-2"
           >
             <div className="w-full">
               <div className="flex justify-between items-center my-2 mx-4">
                 <motion.div
-                  initial={{ y: -20, opacity: 0 }}
+                  initial={{ y: -20, opacity: 0 }} 
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 2 }}
                   className="flex justify-start items-center w-[40%] mx-0"
@@ -149,6 +150,19 @@ const Home = () => {
                   <div className="text-green-900 p-1 border-red-900 border-b-2 font-extrabold">
                     Cart Section
                   </div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center mt-4 text-sm text-yellow-400 py-1 tracking-widest border-t-2 border-b-2 w-[40%]">
+                  Items List
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-[95%] md:w-[70%] my-4 space-y-2 overflow-y-auto max-h-[250px] shadow-md shadow-pink-400 p-4 border rounded-md border-pink-400">
+                  <Card />
+                  <Card />
+                  <Card />
+                  <Card />
                 </div>
               </div>
             </div>
