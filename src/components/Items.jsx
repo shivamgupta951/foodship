@@ -16,10 +16,11 @@ import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
 import { BiLeftArrow, BiLeftArrowAlt } from "react-icons/bi";
 import { BioContext } from "../ContextApi/text";
+import { toast } from "react-hot-toast";
 
 const Items = () => {
   const { cards } = useContext(BioContext);
-  const { input } = useContext(BioContext);
+  const { input, addInCart } = useContext(BioContext);
   const cate = cards;
   const { setMenuStatus } = useContext(BioContext);
   const filteredItems =
@@ -117,7 +118,7 @@ const Items = () => {
               <div className="max-h-[350px] overflow-y-auto outline outline-4 outline-violet-700 p-5 ">
                 {" "}
                 {/* 👈 scroll wrapper */}
-                <motion.div 
+                <motion.div
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 1.8 }}
@@ -133,14 +134,14 @@ const Items = () => {
                     </div>
                   ) : (
                     filteredItems.map((item, index) => {
-                      const { food_image, food_name, price, food_type } = item;
-
+                      const { food_image, food_name, price, food_type, id } =
+                        item;
                       return (
                         <div
                           key={index}
                           className="border p-2 px-4 bg-gray-500 rounded-md transition-all transform shadow-lg duration-500 ease-in-out hover:scale-105 hover:ring-2 hover:ring-red-500 hover:bg-gray-600 md:px-2"
                         >
-                          <div className="flex justify-center items-center"> 
+                          <div className="flex justify-center items-center">
                             <img
                               src={food_image}
                               alt={food_name}
@@ -167,7 +168,12 @@ const Items = () => {
                               {food_type}
                             </div>
                           </div>
-                          <div className="text-[70%] transition-all transform duration-500 ease-in-out text-white flex justify-center items-center p-1 mt-2 bg-gradient-to-bl from-yellow-900 via-orange-900 to-blue-900 md:text-md border rounded-lg hover:from-yellow-600 hover:via-orange-500 hover:to-blue-700 cursor-pointer hover:scale-105">
+                          <div
+                            className="text-[70%] transition-all transform duration-500 ease-in-out text-white flex justify-center items-center p-1 mt-2 bg-gradient-to-bl from-yellow-900 via-orange-900 to-blue-900 md:text-md border rounded-lg hover:from-yellow-600 hover:via-orange-500 hover:to-blue-700 cursor-pointer hover:scale-105"
+                            onClick={() => {
+                              addInCart(id);
+                            }}
+                          >
                             Add to cart
                           </div>
                         </div>

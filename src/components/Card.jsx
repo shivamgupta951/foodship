@@ -1,36 +1,52 @@
-import React from "react";
-import image1 from "../assets/image1.avif";
-import { FiDelete } from "react-icons/fi";
+// src/components/Card.jsx
+import React, { useContext } from "react";
+import { BioContext } from "../ContextApi/text";
+import { food_items } from "../lib/food";
 import { CgRemove } from "react-icons/cg";
-import { IoRemove } from "react-icons/io5";
-import { MdOutlineDelete } from "react-icons/md";
-const Card = () => {
+import { IoMdAdd } from "react-icons/io";
+import { FiDelete } from "react-icons/fi";
+
+const Card = ({ id }) => {
+  const { deleteInCart, updateQuantity, quantities } = useContext(BioContext);
+
+  const card_id = food_items.find((item) => item.id === id);
+  const qty = quantities[id] || 1;
+
   return (
-    <div className="w-full py-2 bg-black/70 rounded-lg flex justify-between items-center">
-      <div className="flex w-[45%]">
+    <div className="bg-gray-900 text-white p-3 rounded-lg flex justify-between shadow-lg hover:shadow-xl border border-gray-700">
+      <div className="flex items-center space-x-3">
         <img
-          src={image1}
-          alt="image"
-          className="h-20 w-[50%] mx-4 rounded-xl border border-gray-400"
+          src={card_id.food_image}
+          alt={card_id.food_name}
+          className="w-16 h-16 rounded-lg object-cover"
         />
         <div>
-          <div className="text-[80%] font-bold my-[10%] flex justify-center items-center text-green-500 tracking-tighter">
-            Chicken Soup
-          </div>
-          <div className="flex items-center border rounded-2xl w-[100%] cursor-pointer p-1 border-blue-600">
-            <div className="border-blue-600 border-r-2 px-3">-</div>
-            <div className="border-blue-600 px-2">1</div>
-            <div className="border-blue-600 border-l-2 px-2">+</div>
+          <h2 className="text-sm font-bold">{card_id.food_name}</h2>
+          <p className="text-xs text-gray-400">₹{card_id.price}/-</p>
+          <div className="flex items-center space-x-2 mt-1">
+            <button
+              className="bg-red-600 px-2 py-1 rounded-md text-[50%] hover:bg-red-700 flex items-center"
+              onClick={() => updateQuantity(card_id.id, qty - 1)}
+            >
+              <CgRemove className="mr-1" /> Remove
+            </button>
+            <span className="px-3 py-1 bg-gray-700 rounded-md">{qty}</span>
+            <button
+              className="bg-green-600 px-2 py-1 rounded-md text-[50%] hover:bg-green-700 flex items-center"
+              onClick={() => updateQuantity(card_id.id, qty + 1)}
+            >
+              <IoMdAdd className="mr-1" /> Add
+            </button>
           </div>
         </div>
       </div>
-      <div className="space-y-2 mx-2">
-        <div className="flex justify-center items-center text-[90%] text-yellow-400">
-          Rs 399/-
-        </div>
-        <div className="flex justify-center items-center">
-          <MdOutlineDelete className="size-8 text-red-600 cursor-pointer" />
-        </div>
+      <div>
+        <button
+          className="text-red-500 hover:text-red-700 text-lg"
+          onClick={() => deleteInCart(card_id.id)}
+        >
+          <FiDelete />
+        </button>
       </div>
     </div>
   );

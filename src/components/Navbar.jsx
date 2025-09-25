@@ -15,7 +15,8 @@ import ElectricBorder from "./ElectricBorder";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { menustatus } = useContext(BioContext);
-  const { input, setInput, cartstatus, setCartstatus } = useContext(BioContext);
+  const { input, setInput, cartstatus, setCartstatus, cart } =
+    useContext(BioContext);
   useEffect(() => {
     menustatus ? "" : setInput("");
   }, [menustatus]);
@@ -87,7 +88,11 @@ const Navbar = () => {
           }}
         >
           Cart <FaCartArrowDown className="mx-1" size={22} />
-          <span className="absolute top-0 right-1">0</span>{" "}
+          {cart.length > 0 && (
+            <span className="absolute -top-1 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+              {cart.length}
+            </span>
+          )}
         </Button>
       </div>
       <div className="block md:hidden mx-1">
@@ -135,9 +140,12 @@ const Navbar = () => {
                 setCartstatus(true);
               }}
             >
-              Cart
-              <FaCartArrowDown className="mx-1" size={22} />
-              <span className="absolute top-0 right-1">0</span>
+              Cart <FaCartArrowDown className="mx-1" size={22} />
+              {cart.length > 0 && (
+                <span className="absolute -top-1 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+                  {cart.length}
+                </span>
+              )}
             </Button>
           </div>
           <div className="flex justify-center items-center">
