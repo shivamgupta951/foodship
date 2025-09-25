@@ -66,7 +66,7 @@ const Home = () => {
                 pauseBetweenAnimations={1}
               />
               <div
-                className="border text-sm btn btn-sm btn-primary mx-4 mt-2"
+                className="border text-sm btn btn-sm mx-4 mt-2"
                 onClick={() => setAddressStatus(true)}
               >
                 Update Address
@@ -138,7 +138,7 @@ const Home = () => {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="w-[100%] text-white rounded-2xl shadow-md shadow-fuchsia-900 border-black bg-gradient-to-br from-violet-900 border-4 via-slate-800 to-secondary min-h-[80%] md:w-[80%] lg:w-[60%] lg:h-[83%] py-2"
+            className="w-[100%] text-white rounded-2xl shadow-md shadow-fuchsia-900 border-black bg-gradient-to-br from-violet-900 border-4 via-slate-800 to-secondary min-h-[80%] md:w-[80%] lg:w-[60%] lg:h-[86%] py-2"
           >
             <div className="w-full">
               <div className="flex justify-between items-center my-2 mx-4">
